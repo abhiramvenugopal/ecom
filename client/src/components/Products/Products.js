@@ -3,6 +3,7 @@ import './Products.css';
 import React,{useState,useEffect} from 'react';
 import axios from "axios";
 import ProductInfo from "../ProductInfo/ProductInfo";
+import Login from "../Login/Login";
 
 function Products(props) {
     const [products, setproducts] = useState([])
@@ -51,7 +52,7 @@ function Products(props) {
 
         </div>
         <ProductInfo product={products[selectedProduct]} show={showProduct} onHide={() => setshowProduct(false)}/>
-        
+        <Login show={true}/>
     </div>
     
   );
