@@ -5,6 +5,9 @@ import {Modal} from 'react-bootstrap';
 
 const axios = require('axios');
 
+/*
+    Login/Signup modal component 
+*/
 
 function Login(props) {
   const [login, setlogin] = useState({username:"",password:""});
@@ -15,12 +18,15 @@ function Login(props) {
   const triggerLogin=(event)=>{
     event.preventDefault()
     console.log(login)
-    axios.post('http://localhost:3035/api/v1/user/signin',login)
+    axios.post('http://localhost:3035/api/v1/user/signin',login)            //API request for sign in 
         .then(function (response) {
             window.localStorage.setItem("Token",response.data.token)
             window.localStorage.setItem("User",JSON.stringify(response.data.user))
             console.log(response.data.token)
             setshowlogin(false)
+            if(props.loginsuccess){
+                props.loginsuccess()
+            }
         })
         .catch(function (error) {
           setloginFailed(true)
@@ -29,7 +35,7 @@ function Login(props) {
   }
   const triggerSignup=(event)=>{
     event.preventDefault()
-    axios.post('http://localhost:3035/api/v1/user/register',signup)
+    axios.post('http://localhost:3035/api/v1/user/register',signup)             //API request for register
         .then(function (response) {
             setsignupFlag(true)
         })

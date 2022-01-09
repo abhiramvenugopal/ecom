@@ -4,7 +4,9 @@ const router=express.Router();
 const bcrypt=require('bcrypt')
 const jwt =require("jsonwebtoken");
 const userModel=require('../model/user')
+const middleware=require('../util/middleware')
 
+router.use("/getuser",middleware)
 
 router.post('/signin',(req,res)=>{
     const {username,password}=req.body
@@ -56,6 +58,18 @@ router.post("/register",async function(req,res){
     }
     
     
+})
+router.get('/getuser',async function(req,res){
+    try{
+        var savedUser=await userModel.findOne({_id:req.user})
+        res.status(200).json({status:"success",user:{email:savedUser.email,bag:savedUser.bag,_id:savedUser._id,wishlist:savedUser.wishlist,pincode:savedUser.pincode,}})
+    }
+    catch(err){
+        res.status(500).json({
+            status:"failed",
+            message:err
+        })
+    }
 })
 
 module.exports=router

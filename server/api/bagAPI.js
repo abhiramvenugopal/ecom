@@ -18,6 +18,19 @@ router.post("/add",async function(req,res){
         console.log("error",error)
     }  
 })
+router.delete("/remove/:id",async function(req,res){
+    try {
+        let result=await userModel.updateOne({_id:req.user},{  $pull: { bag:req.params.id } })
+        res.status(200).json({
+            status:"success",
+            message:"deletion success"
+        })
+    } catch (error) {
+        res.status(500).json({status:"failed"})
+        console.log("error",error)
+    }  
+})
+
 
 
 

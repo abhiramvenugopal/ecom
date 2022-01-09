@@ -11,6 +11,10 @@ import Carousel from 'react-bootstrap/Carousel';
 import { useState } from 'react';
 import Products from "../Products/Products";
 
+/*
+  Landing page for the Application
+*/
+
 function Home() {
     const [filter, setfilter] = useState({})
     const [showProducts, setshowProducts] = useState(false)
@@ -32,10 +36,7 @@ function Home() {
                 src={carouselOne}
                 alt="First slide"
                 />
-                <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
+                
             </Carousel.Item>
             <Carousel.Item interval={500}>
                 <img
@@ -43,10 +44,7 @@ function Home() {
                 src={carouselTwo}
                 alt="Second slide"
                 />
-                <Carousel.Caption>
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
+
             </Carousel.Item>
             <Carousel.Item>
                 <img
@@ -54,10 +52,7 @@ function Home() {
                 src={carouselThree}
                 alt="Third slide"
                 />
-                <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                </Carousel.Caption>
+               
             </Carousel.Item>
         </Carousel>
         <div className='categories'>

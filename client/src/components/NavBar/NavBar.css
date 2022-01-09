@@ -36,6 +36,13 @@
 .search-bar-container {
   margin-top: 3px;
 }
+.logout-btn {
+  background-color: white;
+  border: solid rgba(172, 162, 162, 0.719) 2px;
+  color: rgba(163, 97, 97, 0.719);
+  font-weight: bolder;
+  margin-top: 10px;
+}
 
 @media (min-width: 993px) {
   .navbar-nav {

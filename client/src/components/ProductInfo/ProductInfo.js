@@ -6,18 +6,24 @@ import { useState } from "react";
 
 
 const axios = require('axios');
+
+/*
+  
+modal component for showing product details
+
+*/ 
+
 function ProductInfo(props) {
   const [showLogin, setshowLogin] = useState(false)
 
 
-  let addToWishListOrBag=(option)=>{
-    console.log(props.product)
-    let token=getToken()
+  let addToWishListOrBag=(option)=>{                                          //function for adding product to wishlist or bag based on the option
+    let token=getToken()              
     if(token){
       let header={Authorization:"bearer "+token}
       console.log(token)
       var body={product:props.product._id}
-      axios.post('http://localhost:3035/api/v1/'+option+'/add',body,{headers:header})
+      axios.post('http://localhost:3035/api/v1/'+option+'/add',body,{headers:header})   // api url created based on option parameter of the funtion
           .then(function (response) {
             console.log(response)
           })
