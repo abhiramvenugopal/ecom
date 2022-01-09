@@ -6,8 +6,11 @@ const jwt =require("jsonwebtoken");
 const userModel=require('../model/user')
 const middleware=require('../util/middleware')
 
+//middleware for accessing user details 
 router.use("/getuser",middleware)
 
+
+// API for signin with username and password
 router.post('/signin',(req,res)=>{
     const {username,password}=req.body
     console.log(req.body)
@@ -34,6 +37,7 @@ router.post('/signin',(req,res)=>{
         console.log(err)
     })
 })
+// API for registering a user
 router.post("/register",async function(req,res){
     console.log(req.body)
     let reqObject={...req.body}
@@ -59,6 +63,7 @@ router.post("/register",async function(req,res){
     
     
 })
+//API for getting all details of a user 
 router.get('/getuser',async function(req,res){
     try{
         var savedUser=await userModel.findOne({_id:req.user})

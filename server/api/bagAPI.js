@@ -6,6 +6,10 @@ const middleware=require('../util/middleware')
 
 router.use("/",middleware)
 
+/*
+    API for adding an item to the bag
+*/
+
 router.post("/add",async function(req,res){
     try {
         let result=await userModel.updateOne({_id:req.user},{  $addToSet: { bag:req.body.product } })
@@ -18,6 +22,10 @@ router.post("/add",async function(req,res){
         console.log("error",error)
     }  
 })
+
+/*
+    API for removeing an item from the bag
+*/
 router.delete("/remove/:id",async function(req,res){
     try {
         let result=await userModel.updateOne({_id:req.user},{  $pull: { bag:req.params.id } })

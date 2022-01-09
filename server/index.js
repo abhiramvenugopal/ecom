@@ -10,7 +10,7 @@ const bagAPI=require('./api/bagAPI')
 
 app.use(cors())
 
-const dotenv = require('dotenv');
+const dotenv = require('dotenv');                           
 dotenv.config();
 mongoose.connect(process.env.DB)
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -19,10 +19,10 @@ app.use(cors())
 
 
 
-app.use("/api/v1/product",productAPI);
-app.use("/api/v1/user",userAPI);
-app.use("/api/v1/wishlist",wishlistAPI);
-app.use("/api/v1/bag",bagAPI);
+app.use("/api/v1/product",productAPI);                      //API for dealing with products
+app.use("/api/v1/user",userAPI);                            //API for dealing with user details
+app.use("/api/v1/wishlist",wishlistAPI);                    //API for dealing with wishlist items
+app.use("/api/v1/bag",bagAPI);                              //API for dealing with bag items
 
 
 const PORT=process.env.PORT || 8080

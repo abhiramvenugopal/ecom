@@ -3,7 +3,9 @@ const mongoose=require("mongoose");
 const router=express.Router();
 const productModel=require('../model/product')
 
-
+/*
+    API for uploading bulk amount of product details to DataBase
+*/
 router.post("/createmany",async function(req,res){
     try {
         await productModel.insertMany(req.body)
@@ -16,7 +18,9 @@ router.post("/createmany",async function(req,res){
         console.log("error",error)
     }  
 })
-
+/*
+    API for getting all product details
+*/
 router.get('/products',async function(req,res){
     try{
         let products=await productModel.find({})
@@ -29,6 +33,11 @@ router.get('/products',async function(req,res){
         })
     }
 })
+
+/*
+    API for getting products based on filter condition
+*/
+
 router.post('/filter',async function(req,res){
     console.log("hello")
     try{
@@ -43,6 +52,10 @@ router.post('/filter',async function(req,res){
         })
     }
 })
+
+/*
+    API for getting products based on array of product ids
+*/
 
 router.post('/products/array',async function(req,res){
     console.log(req.body)
