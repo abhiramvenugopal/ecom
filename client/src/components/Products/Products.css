@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.custom-card {
+  margin: 30px;
+  width: 18rem;
+}
+.product-img {
+  height: 20rem;
+}
+@media (max-width: 992px) {
+  .products {
+    justify-content: center;
+  }
+}
