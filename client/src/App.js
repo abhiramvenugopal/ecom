@@ -20,6 +20,7 @@ function App() {
                   <Route path='/wishlist' element={<WishList/>} ></Route>
                   <Route path='/bag' element={<Bag/>} ></Route>
                   <Route path='/loginorsignup' element={<Redirector/>} ></Route>
+                  <Route path='/products' element={<Products/>} ></Route>
           </Routes>
         </div>
       </Router>

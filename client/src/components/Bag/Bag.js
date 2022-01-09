@@ -61,9 +61,13 @@ function Bag() {
                 console.log(response)
                 let tempProducts=[...products]
                 let tempCountArray=[...countArray]
-                tempProducts=tempProducts.splice(index, 1);
+                tempProducts = tempProducts.filter(function(item,itemindex) {
+                    return itemindex !== index
+                })
                 setproducts(tempProducts)
-                tempCountArray=tempCountArray.splice(index, 1);
+                tempCountArray = tempCountArray.filter(function(item,itemindex) {
+                    return itemindex !== index
+                })
                 setcountArray(tempCountArray)
                 updateUser()
                 calculateCost(tempProducts,tempCountArray)
@@ -73,7 +77,9 @@ function Bag() {
             })
         
     }  
-
+    const onClickaddItems=()=>{
+        navigate('/products')
+    }
 
     useEffect(() => {
         var tempUser=getUser()
@@ -106,7 +112,7 @@ function Bag() {
                                     <span>Add more and get 70% off</span>
                                 </div>
                                 <div>
-                                    <button className='bag-btn'>ADD ITEMS</button>
+                                    <button onClick={()=>{onClickaddItems()}} className='bag-btn'>ADD ITEMS</button>
                                 </div>
                             </div>
                             {

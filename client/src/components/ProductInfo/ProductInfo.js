@@ -1,6 +1,6 @@
 import {Modal} from 'react-bootstrap';
 import './ProductInfo.css';
-import { getToken } from "../../utils/authOperations";
+import { getToken, updateUser } from "../../utils/authOperations";
 import Login from "../Login/Login";
 import { useState } from "react";
 
@@ -26,6 +26,7 @@ function ProductInfo(props) {
       axios.post('http://localhost:3035/api/v1/'+option+'/add',body,{headers:header})   // api url created based on option parameter of the funtion
           .then(function (response) {
             console.log(response)
+            updateUser()
           })
           .catch(function (error) {
             console.log(error)
