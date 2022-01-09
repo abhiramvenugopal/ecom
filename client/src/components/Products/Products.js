@@ -30,8 +30,36 @@ function Products(props) {
             console.log(error);
         })
     }
+    const getProductsByArray=()=>{
+        var body={}
+        if(props.products){
+            body={products:props.products}
+            axios.post('http://localhost:3035/api/v1/product/products/array',body)
+            .then(function (response) {
+                console.log(response)
+                if(response.status===200){           
+                    console.log(response.data)
+                    setproducts(response.data.products)
+                
+                }
+            })
+            .catch(function (error) {
+                
+                // handle error
+                console.log(error);
+            })
+        }
+        
+    }
     useEffect(() => {
-        getProducts()
+        console.log(props.products)
+        if(props.products){
+            getProductsByArray()
+        }
+        else{
+            getProducts()
+        }
+        
     }, []);
   return (
     <div className='container'>
@@ -43,8 +71,8 @@ function Products(props) {
                         <img className="card-img-top product-img" src={product.image} alt="Error"/>
                         <div className="card-body">
                             <h5 className="card-title">{product.title}</h5>
+                            <span className="product-price">₹{product.price}</span>
                             <p className="card-text">Rating:{product.rating.rate}({product.rating.count})</p>
-                            <a href="#" className="btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
                 )
@@ -52,7 +80,6 @@ function Products(props) {
 
         </div>
         <ProductInfo product={products[selectedProduct]} show={showProduct} onHide={() => setshowProduct(false)}/>
-        <Login show={true}/>
     </div>
     
   );

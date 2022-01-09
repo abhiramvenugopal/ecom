@@ -8,10 +8,23 @@ import jewellery from "../../assets/img/jewellery.jpg";
 import men from "../../assets/img/men.jpg";
 import women from "../../assets/img/women.jpg";
 import Carousel from 'react-bootstrap/Carousel';
+import { useState } from 'react';
+import Products from "../Products/Products";
 
 function Home() {
+    const [filter, setfilter] = useState({})
+    const [showProducts, setshowProducts] = useState(false)
+
+
+    const filterProducts=(value)=>{
+        setfilter({category: value})
+        setshowProducts(true)
+    }
+
   return (
-    <div className='container'>
+    <div className='home-container'>
+        {!showProducts &&
+        <div>
         <Carousel>
             <Carousel.Item interval={1000}>
                 <img
@@ -49,12 +62,15 @@ function Home() {
         </Carousel>
         <div className='categories'>
             <div class="img-container">
-                <img className='categories-img' src={men} alt="Error"/>
-                <img className='categories-img' src={women} alt="Error"/>
-                <img className='categories-img' src={electronics} alt="Error"/>
-                <img className='categories-img' src={jewellery} alt="Error"/>
+                <img onClick={()=>{filterProducts("men's clothing")}} className='categories-img' src={men} alt="Error"/>
+                <img onClick={()=>{filterProducts("women's clothing")}} className='categories-img' src={women} alt="Error"/>
+                <img onClick={()=>{filterProducts("electronics")}} className='categories-img' src={electronics} alt="Error"/>
+                <img onClick={()=>{filterProducts("jewelery")}} className='categories-img' src={jewellery} alt="Error"/>
             </div>
         </div>
+        </div>
+        }
+        {showProducts && <Products filter={filter}/>}
     </div>
     
   );

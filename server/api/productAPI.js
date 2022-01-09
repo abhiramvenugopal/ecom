@@ -44,5 +44,20 @@ router.post('/filter',async function(req,res){
     }
 })
 
+router.post('/products/array',async function(req,res){
+    console.log(req.body)
+    try{
+        let products=await productModel.find({ '_id': { $in: req.body.products } })
+        console.log(products)
+        res.status(200).json({status:"success",products})
+    }
+    catch(err){
+        res.status(500).json({
+            status:"failed",
+            message:err
+        })
+    }
+})
+
 
 module.exports=router

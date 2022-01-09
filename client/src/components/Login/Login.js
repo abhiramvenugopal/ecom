@@ -11,6 +11,7 @@ function Login(props) {
   const [signup, setsignup] = useState({email:"",password:"",pincode:""});
   const [signupFlag, setsignupFlag] = useState(false)
   const [loginFailed, setloginFailed] = useState(false)
+  const [showlogin, setshowlogin] = useState(true)
   const triggerLogin=(event)=>{
     event.preventDefault()
     console.log(login)
@@ -19,6 +20,7 @@ function Login(props) {
             window.localStorage.setItem("Token",response.data.token)
             window.localStorage.setItem("User",JSON.stringify(response.data.user))
             console.log(response.data.token)
+            setshowlogin(false)
         })
         .catch(function (error) {
           setloginFailed(true)
@@ -38,6 +40,7 @@ function Login(props) {
   return (
     <Modal
     {...props}
+    show={props.show && showlogin}
     size="lg"
     aria-labelledby="contained-modal-title-vcenter"
     centered

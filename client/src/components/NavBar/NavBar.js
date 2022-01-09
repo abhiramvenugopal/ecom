@@ -1,7 +1,12 @@
 
 import './NavBar.css';
 import Logo from "../../assets/img/logo.png";
+import { useNavigate  } from "react-router-dom";
 function NavBar() {
+    const navigate=useNavigate()
+    const routeTo=(value)=>{
+        navigate("/"+value);
+    }
   return (
     <div className='navbar-container'>
         <nav className="navbar  navbar-expand-lg navbar-light bg-light">
@@ -19,11 +24,11 @@ function NavBar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                        <li onClick={()=>{routeTo("wishlist")}} className="nav-item">
                             <i className="fas fa-heart fa-2x icons"></i>
                             <span className='navbar-label'>WishList</span>
                         </li>
-                        <li className="nav-item">
+                        <li onClick={()=>{routeTo("bag")}} className="nav-item">
                             <i className="fas fa-shopping-bag fa-2x icons"></i>
                             <span className='navbar-label'>Bag</span>
                         </li>
